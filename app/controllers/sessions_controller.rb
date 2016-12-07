@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    @response = Faraday.post("https://github.com/login/oauth/access_token?#{ENV["client_id"]}=&#{ENV["client_secret"]}=&code=#{params["code"]}")
-     token = @response.body.split(/\W+/)[1]
+     response = Faraday.post("https://github.com/login/oauth/access_token?client_id=#{ENV["client_id"]}&client_secret=#{ENV["client_secret"]}&code=#{params["code"]}")
+     token = response.body.split(/\W+/)[1]
      oauth_response = Faraday.get("https://api.github.com/user?access_token=#{token}")
      auth = JSON.parse(oauth_response.body)
 
