@@ -9,9 +9,18 @@ class GithubService
 
   def repos
     response = conn.get "/user/repos"
-    JSON.parse(response.body, symbolize_names: true)
+    parse(response.body)
+  end
+
+  def profile
+    response = conn.get "/user"
+    parse(response.body)
   end
 
   private
     attr_reader :token, :conn
+
+    def parse(body)
+      JSON.parse(body, symbolize_names: true)
+    end
 end
