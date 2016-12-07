@@ -4,7 +4,7 @@ describe GithubService do
   context "#repositories" do
     it "returns all repositories for a user" do
       VCR.use_cassette("#repos") do
-        repos = GithubService.new(ENV["new_token"]).repos
+        repos = GithubService.new(ENV["token"]).repos
         repo = repos.first
 
         expect(repos).to be_an(Array)
