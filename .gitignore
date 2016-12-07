@@ -15,3 +15,8 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+/notes.rb
+
+# Ignore application configuration
+/config/application.yml
