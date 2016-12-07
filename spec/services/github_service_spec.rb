@@ -1,11 +1,6 @@
 require 'rails_helper'
 
 describe GithubService do
-  # VCR.use_cassette("synopsis") do
-  #   response = Net::HTTP.get_response(URI('http://www.iana.org/domains/reserved'))
-  #   assert_match /Example domains/, response.body
-  # end
-
   context "#repositories" do
     it "returns all repositories for a user" do
       VCR.use_cassette("#repos") do
