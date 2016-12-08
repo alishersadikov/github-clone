@@ -3,7 +3,7 @@ require 'rails_helper'
 describe GithubRepo do
   context ".for_user(token)" do
     it "returns repos for a user" do
-      VCR.use_cassette(".for_user") do
+      VCR.use_cassette("repo/.for_user") do
         repos = GithubRepo.for_user(ENV["token"])
         repo = repos.first
 
