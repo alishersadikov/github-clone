@@ -1,11 +1,8 @@
 class GithubService
   def initialize(token)
-    @_user = User.find_by(token: token)
     @_token = token
-    @conn = Faraday.new(url: "https://api.github.com") do |faraday|
-      faraday.adapter Faraday.default_adapter
-      faraday.params[:access_token] = token
-    end
+    @_conn = connection
+    @_user = User.find_by(token: token)
   end
 
   def repos
@@ -28,14 +25,45 @@ class GithubService
     parse(response.body)
   end
 
+  def organizations
+    response = conn.get "user/orgs"
+    parse(response.body)
+  end
+
+  def starred_repos
+    response = conn.get "users/#{user.username}/starred"
+    parse(response.body)
+  end
+
+  def create_repo(repo_name)
+    response = conn.post do |req|
+      req.url '/user/repos'
+      req.headers['Content-Type'] = 'application/json'
+      body = { name: repo_name }
+      req.body = body.to_json
+    end
+    parse(response.body)
+  end
+
   private
-    attr_reader :conn
+
     def user
       @_user
     end
 
     def token
       @_token
+    end
+
+    def conn
+      @_conn
+    end
+
+    def connection
+      Faraday.new(url: "https://api.github.com") do |faraday|
+        faraday.adapter Faraday.default_adapter
+        faraday.params[:access_token] = token
+      end
     end
 
     def parse(body)
