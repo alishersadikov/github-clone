@@ -8,4 +8,8 @@ class DisplayProfile
   def profile_info
     GithubProfile.for_user(user.token)
   end
+
+  def repos
+    GithubRepo.for_user(user.token)
+  end
 end

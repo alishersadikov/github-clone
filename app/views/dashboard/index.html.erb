@@ -1,5 +1,5 @@
 YOU ARE LOGGED IN AS: <%= current_user.username %>
-<%= image_tag @profile.avatar_url %><br><br>
+<%= image_tag @profile.profile_info.avatar_url %><br><br>
 
   <table>
   <thead>
@@ -8,14 +8,16 @@ YOU ARE LOGGED IN AS: <%= current_user.username %>
       <th>Full name</th>
       <th>Followers</th>
       <th>Following</th>
+      <th>Repos</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><%= @profile.name %></td>
-      <td><%= @profile.full_name %></td>
-      <td><%= @profile.followers %></td>
-      <td><%= @profile.following %></td>
+      <td><%= @profile.profile_info.name %></td>
+      <td><%= @profile.profile_info.full_name %></td>
+      <td><%= @profile.profile_info.followers %></td>
+      <td><%= @profile.profile_info.following %></td>
+      <td><%= @profile.repos %></td>
     </tr>
   </tbody>
   </table>
