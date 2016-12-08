@@ -5,12 +5,13 @@ describe GithubProfile do
     it "returns profile info for a user" do
       VCR.use_cassette("profile/.for_user") do
         profile = GithubProfile.for_user(ENV["token"])
-        binding.pry
-        expect(profile).to be_an(Array)
-        expect(profile).to be_an(GithubRepo)
+
+        expect(profile).to be_an(GithubProfile)
         expect(profile).to respond_to(:name)
         expect(profile).to respond_to(:full_name)
-        expect(profile).to respond_to(:description)
+        expect(profile).to respond_to(:avatar_url)
+        expect(profile).to respond_to(:followers)
+        expect(profile).to respond_to(:following)
       end
     end
   end

@@ -1,1 +1,21 @@
 YOU ARE LOGGED IN AS: <%= current_user.username %>
+<%= image_tag @profile.avatar_url %><br><br>
+
+  <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Full name</th>
+      <th>Followers</th>
+      <th>Following</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @profile.name %></td>
+      <td><%= @profile.full_name %></td>
+      <td><%= @profile.followers %></td>
+      <td><%= @profile.following %></td>
+    </tr>
+  </tbody>
+  </table>
