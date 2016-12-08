@@ -1,7 +1,12 @@
 class GithubProfile
+  attr_reader :name, :full_name, :avatar_url, :followers, :following
 
   def initialize(attributes = {})
-    binding.pry
+    @name = attributes[:login]
+    @full_name = attributes[:name]
+    @avatar_url = attributes[:avatar_url]
+    @followers = attributes[:followers]
+    @following = attributes[:following]
   end
 
   def self.for_user(token)
